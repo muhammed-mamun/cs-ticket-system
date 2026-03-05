@@ -163,7 +163,7 @@ export default function TicketContainer({ inProgress, setInProgress, resolved, s
     }
 
     return (
-        <div className="flex p-4 mx-auto max-w-360 lg:my-20 gap-8">
+        <div className="flex flex-col lg:flex-row p-4 mx-auto max-w-360 lg:my-20 gap-8">
             <div className="flex-1">
                 <p className="text-2xl font-semibold text-[#34485A] my-4">Customer Tickets</p>
                 <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
@@ -209,7 +209,7 @@ export default function TicketContainer({ inProgress, setInProgress, resolved, s
                     }
                 </div>
             </div>
-            <div className="felx-1">
+            <div className="">
                 <div>
                     <p className="text-2xl font-semibold text-[#34485A] my-4">Task Status</p>
                     <div>

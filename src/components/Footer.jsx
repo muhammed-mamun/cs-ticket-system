@@ -40,7 +40,7 @@ export default function Footer() {
 @CS-Ticket System</a>
           <a className="link link-hover flex items-center"> <TiSocialTwitterCircular size={24} />
 @CS-Ticket System</a>
-          <a className="link link-hover flex items-center"><BiLogoGmail size={12}/>
+          <a className="link link-hover flex items-center gap-1"><BiLogoGmail size={14}/>
 support@cst.com</a>
 
         </nav>
