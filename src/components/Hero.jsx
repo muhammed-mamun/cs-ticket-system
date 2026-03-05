@@ -2,11 +2,11 @@ import vector1 from '../assets/vector1.png';
 
 export default function Hero() {
   return (
-    <div className='grid lg:grid-cols-2 gap-6 p-4 mx-auto max-w-360' >
+    <div className='grid lg:grid-cols-2 gap-6 p-4 mx-auto max-w-360 lg:my-20' >
       <div
       className="flex w-full relative overflow-hidden lg:h-64 rounded-lg px-10 py-8  flex-col items-center justify-center shadow-lg"
       style={{
-        background: 'linear-gradient(135deg, #7c5cbf 0%, #8b6fd4 50%, #9b7fe8 100%)',
+        background: 'linear-gradient(135deg, #632EE3 0%, #9F62F2 100%)',
         minHeight: '140px',
       }}
     >
@@ -77,7 +77,7 @@ export default function Hero() {
 
       {/* Content */}
       <p className="text-sm text-white/90 mb-2 tracking-wide z-10 relative font-medium">
-        In-Progress
+        Resolved
       </p>
       <h1 className="text-5xl font-bold text-white z-10 relative leading-none">
         0
