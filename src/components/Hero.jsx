@@ -1,6 +1,6 @@
 import vector1 from '../assets/vector1.png';
 
-export default function Hero() {
+export default function Hero({inProgress, resolved}) {
   return (
     <div className='grid lg:grid-cols-2 gap-6 p-4 mx-auto max-w-360 lg:my-20' >
       <div
@@ -40,7 +40,7 @@ export default function Hero() {
         In-Progress
       </p>
       <h1 className="text-5xl font-bold text-white z-10 relative leading-none">
-        0
+        {inProgress.length}
       </h1>
     </div>
     <div
@@ -80,7 +80,7 @@ export default function Hero() {
         Resolved
       </p>
       <h1 className="text-5xl font-bold text-white z-10 relative leading-none">
-        0
+        {resolved.length}
       </h1>
     </div>
     </div>

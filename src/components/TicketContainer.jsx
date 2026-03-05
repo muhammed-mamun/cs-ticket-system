@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MdOutlineDateRange } from "react-icons/md"
 
 const tickets = [
@@ -139,20 +140,37 @@ const tickets = [
 ]
 
 export default function TicketContainer({ inProgress, setInProgress, resolved, setresolved }) {
+    const [ticketsState, setTicketsState] = useState(tickets); 
+    
+    const handleAddInProgress = (ticket) => {
+
+        if (inProgress.find(t => t.id === ticket.id)) return;
+
+        setInProgress([...inProgress, ticket]);
+
+        setTicketsState(prev => prev.map(t => t.id === ticket.id ? { ...t, status: "in progress" } : t));
+    }
+
+    const handleComplete = (ticket) => {
+        setInProgress(prev => prev.filter(t => t.id !== ticket.id));
+        setTicketsState(prev => prev.filter(t => t.id !== ticket.id));
+
+        setresolved([...resolved, { ...ticket, status: "resolved" }]);
+    }
 
     return (
-        <div className="p-4 mx-auto max-w-360 lg:my-20">
-            <div>
-                <p className="text-xl font-semibold text-[#34485A] my-4">Customer Tickets</p>
+        <div className="flex p-4 mx-auto max-w-360 lg:my-20 gap-8">
+            <div className="flex-1">
+                <p className="text-2xl font-semibold text-[#34485A] my-4">Customer Tickets</p>
                 <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
                     {
-                        tickets.map(ticket => {
+                        ticketsState.map(ticket => {
                             return (
-                                <div key={ticket.id} className="bg-white rounded-lg shadow p-4">
+                                <div key={ticket.id} onClick={() => handleAddInProgress(ticket)} className="card bg-white rounded-lg shadow p-4 hover:shadow-md cursor-pointer transition-shadow">
                                     <div className="flex justify-between items-center">
                                         <h2 className="text-lg font-bold text-[#34485A] mb-2">{ticket.title}</h2>
                                         <div
-                                            className={`flex items-center gap-1 py-1 px-2 rounded-2xl ${ticket.status === "open" ? "bg-green-200" : "bg-yellow-200"
+                                            className={`flex items-center text-sm gap-1 py-1 px-2 rounded-2xl ${ticket.status === "open" ? "bg-green-200" : "bg-yellow-200"
                                                 }`}
                                         >
                                             <div
@@ -164,7 +182,7 @@ export default function TicketContainer({ inProgress, setInProgress, resolved, s
                                     </div>
                                     <p className="text-sm text-gray-600 mb-1">{ticket.description}</p>
 
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between text-base">
                                         <div className="flex gap-4">
                                             <p className="text-sm text-gray-600 mb-1">#{ticket.id}</p>
                                             <p className={`text-sm font-medium mb-1 uppercase ${ticket.priority === "High"
@@ -187,8 +205,45 @@ export default function TicketContainer({ inProgress, setInProgress, resolved, s
                     }
                 </div>
             </div>
-            <div>
+            <div className="felx-1">
+                <div>
+                    <p className="text-2xl font-semibold text-[#34485A] my-4">Task Status</p>
+                    <div>
+                        {inProgress.length === 0 ? (
+                            <p>Select a ticket to add to Task Status</p>
+                        ) : (
+                            inProgress.map(ticket => (
+                                <div key={ticket.id} className="card gap-2 bg-white rounded-lg shadow p-4 mb-4 flex justify-between items-center">
+                                    <h2 className="text-lg font-bold text-[#34485A]">{ticket.title}</h2>
 
+                                    <button
+                                        onClick={() => handleComplete(ticket)}
+                                        className="bg-green-500 w-full text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                                    >
+                                        Complete
+                                    </button>
+                                </div>
+                            ))
+                        )}
+                    </div>
+
+                </div>
+                <div>
+                    <p className="text-2xl font-semibold text-[#34485A] my-4">Resolved Task</p>
+                    <div>
+                        {resolved.length == 0 ?(
+                            <p>No resolved tasks yet.</p>
+                        ): (
+                            resolved.map(ticket => (
+                                <div key={ticket.id} className="card gap-2 bg-white rounded-lg shadow p-4 mb-4 flex justify-between items-center">
+                                    <h2 className="text-lg font-bold text-orange-600">{ticket.title}</h2>
+
+
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -11,7 +11,10 @@ function App() {
   return (
     <div className="bg-[#f5f5f5]">
       <Header/>
-      <Hero/>
+      <Hero 
+      inProgress={inProgress}
+      resolved = {resolved}
+      />
       <TicketContainer
         inProgress={inProgress}
         setInProgress={setInProgress}
