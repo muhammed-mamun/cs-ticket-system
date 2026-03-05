@@ -4,6 +4,7 @@ import Header from "./components/Header"
 import Hero from "./components/Hero"
 import TicketContainer from "./components/TicketContainer"
 import "./index.css"
+import { ToastContainer } from "react-toastify"
 function App() {
   const [inProgress, setInProgress] = useState([]);
   const [resolved, setresolved] = useState([]);
@@ -22,6 +23,18 @@ function App() {
         setresolved={setresolved}
       />
       <Footer/>
+
+       <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   )
 }

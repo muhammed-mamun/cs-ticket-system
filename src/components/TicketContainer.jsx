@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MdOutlineDateRange } from "react-icons/md"
+import { toast } from "react-toastify";
 
 const tickets = [
     {
@@ -149,6 +150,7 @@ export default function TicketContainer({ inProgress, setInProgress, resolved, s
         setInProgress([...inProgress, ticket]);
 
         setTicketsState(prev => prev.map(t => t.id === ticket.id ? { ...t, status: "in progress" } : t));
+        toast.success(`Ticket "${ticket.title} added to task list"`)
     }
 
     const handleComplete = (ticket) => {
@@ -156,6 +158,8 @@ export default function TicketContainer({ inProgress, setInProgress, resolved, s
         setTicketsState(prev => prev.filter(t => t.id !== ticket.id));
 
         setresolved([...resolved, { ...ticket, status: "resolved" }]);
+
+        toast.success(`Ticket "${ticket.title}" completed`)
     }
 
     return (
